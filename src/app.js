@@ -10,13 +10,14 @@ const configuration = require('@feathersjs/configuration');
 const express = require('@feathersjs/express');
 
 
-
 const middleware = require('./middleware');
 const services = require('./services');
 const appHooks = require('./app.hooks');
 const channels = require('./channels');
 
 const authentication = require('./authentication');
+
+const inventoryDummy = require('./services/inventory/inventory.dummy');
 
 const app = express(feathers());
 
@@ -49,5 +50,9 @@ app.use(express.notFound());
 app.use(express.errorHandler({ logger }));
 
 app.hooks(appHooks);
+
+if (process.env.NODE_ENV === 'dev') {
+  inventoryDummy.populate(app);
+}
 
 module.exports = app;
