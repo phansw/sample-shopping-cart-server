@@ -1,0 +1,13 @@
+version: '3'
+services:
+  weworkfeathers:
+    build: .
+    container_name: weworkfeathers
+    ports:
+      - "3030:3030"
+    volumes:
+      - .:/usr/src/app/:rw
+      - ./node_modules:/usr/src/app/node_modules
+    environment:
+      - NODE_ENV=dev
+    restart: on-failure
