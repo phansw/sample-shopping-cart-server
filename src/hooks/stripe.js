@@ -3,13 +3,13 @@ const stripe = require('stripe')('sk_test_qQpAIO1YXkLZovyKxwDxGFWJ');
 
 module.exports = () => {
   return async (context) => {
-    const { stripeToken, amount } = context.data;
+    const { stripeToken, amount, currency } = context.data;
 
     try {
       await stripe.charges.create({
         amount,
-        currency: 'usd',
-        description: 'Example charge',
+        currency,
+        description: 'The Corner Bookstore purchase',
         source: stripeToken,
       });
     } catch (e) {
