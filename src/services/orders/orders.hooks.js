@@ -2,6 +2,7 @@ const { authenticate } = require('@feathersjs/authentication').hooks;
 const stripe = require('../../hooks/stripe');
 const addDateTime = require('../../hooks/addDateTime');
 const addUser = require('../../hooks/addUser');
+const filter = require('../../hooks/filter');
 
 module.exports = {
   before: {
@@ -18,7 +19,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [filter(['stripeToken', 'user', 'Authorization'])],
     update: [],
     patch: [],
     remove: []
