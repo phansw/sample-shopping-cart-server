@@ -35,7 +35,7 @@ exports.populate = async function (app) {
   await inventoryService.create({
     name: 'The Count of Monte Cristo',
     price: 10.87,
-    qty: 0,
+    qty: 1,
     images: ['https://m.media-amazon.com/images/I/41DRCmOKIxL._AC_UL872_FMwebp_QL65_.jpg'],
   });
 };
