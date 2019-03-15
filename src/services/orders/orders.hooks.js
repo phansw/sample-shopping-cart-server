@@ -3,6 +3,7 @@ const stripe = require('../../hooks/stripe');
 const addDateTime = require('../../hooks/addDateTime');
 const addUser = require('../../hooks/addUser');
 const filter = require('../../hooks/filter');
+const updateStock = require('../../hooks/updateStock');
 
 module.exports = {
   before: {
@@ -19,7 +20,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [filter(['stripeToken', 'user', 'Authorization'])],
+    create: [updateStock(), filter(['stripeToken', 'user', 'Authorization'])],
     update: [],
     patch: [],
     remove: []
