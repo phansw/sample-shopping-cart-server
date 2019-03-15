@@ -10,7 +10,7 @@ module.exports = () => {
         amount,
         currency: 'usd',
         description: 'Example charge',
-        source: stripeToken.id,
+        source: stripeToken,
       });
     } catch (e) {
       throw new PaymentError('Check card details');
