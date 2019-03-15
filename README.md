@@ -10,18 +10,16 @@ This project uses [Feathers](http://feathersjs.com). An open source web framewor
 
 Getting up and running is as easy as 1, 2, 3.
 
-1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
-2. Install your dependencies
+1. Make sure you have Docker and its CLI installed.
+2. Run docker-compose
+```
+docker-compose up
+```
+Or if you want to go into the bash of the container
+```
+docker-compose run -p 3030:3030 weworkfeathers /bin/bash
+```
 
-    ```
-    cd path/to/wework-feathers; npm install
-    ```
-
-3. Start your app
-
-    ```
-    npm start
-    ```
 
 ## Testing
 
