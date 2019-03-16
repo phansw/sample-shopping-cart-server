@@ -4,13 +4,14 @@ const addDateTime = require('../../hooks/addDateTime');
 const addUser = require('../../hooks/addUser');
 const filter = require('../../hooks/filter');
 const updateStock = require('../../hooks/updateStock');
+const validatePaymentAmount = require('../../hooks/validatePaymentAmount');
 
 module.exports = {
   before: {
     all: [authenticate('jwt')],
     find: [],
     get: [],
-    create: [stripe(), addDateTime('createdAt'), addUser('user')],
+    create: [validatePaymentAmount(), stripe(), addDateTime('createdAt'), addUser('user')],
     update: [],
     patch: [],
     remove: []
