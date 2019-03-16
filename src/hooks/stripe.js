@@ -1,5 +1,6 @@
 const { PaymentError } = require('@feathersjs/errors');
 const stripe = require('stripe')('sk_test_qQpAIO1YXkLZovyKxwDxGFWJ');
+const logger = require('../logger');
 
 module.exports = () => {
   return async (context) => {
@@ -13,6 +14,7 @@ module.exports = () => {
         source: stripeToken,
       });
     } catch (e) {
+      logger.error(e);
       throw new PaymentError('Check card details');
     }
 
