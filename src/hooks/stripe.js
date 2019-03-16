@@ -5,10 +5,12 @@ const logger = require('../logger');
 module.exports = () => {
   return async (context) => {
     const { stripeToken, amount, currency } = context.data;
+    const adjustedAmount = Math.floor(amount);
+    context.data.adjustedAmount = adjustedAmount;
 
     try {
       await stripe.charges.create({
-        amount,
+        amount: adjustedAmount,
         currency,
         description: 'The Corner Bookstore purchase',
         source: stripeToken,
