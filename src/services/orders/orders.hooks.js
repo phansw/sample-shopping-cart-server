@@ -5,10 +5,13 @@ const addUser = require('../../hooks/addUser');
 const filter = require('../../hooks/filter');
 const updateStock = require('../../hooks/updateStock');
 const validatePaymentAmount = require('../../hooks/validatePaymentAmount');
+const checkPermissions = require('feathers-permissions');
 
 module.exports = {
   before: {
-    all: [authenticate('jwt')],
+    all: [authenticate('jwt'), checkPermissions({
+      roles: ['orders'],
+    })],
     find: [],
     get: [],
     create: [validatePaymentAmount(), stripe(), addDateTime('createdAt'), addUser('user')],
