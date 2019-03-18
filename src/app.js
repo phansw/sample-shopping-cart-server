@@ -18,6 +18,7 @@ const channels = require('./channels');
 const authentication = require('./authentication');
 
 const inventoryDummy = require('./services/inventory/inventory.dummy');
+const usersDummy = require('./services/users/users.dummy');
 
 const app = express(feathers());
 
@@ -53,6 +54,7 @@ app.hooks(appHooks);
 
 if (process.env.NODE_ENV === 'dev') {
   inventoryDummy.populate(app);
+  usersDummy.populate(app);
 }
 
 module.exports = app;
