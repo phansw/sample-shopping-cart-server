@@ -5,6 +5,7 @@ const addUser = require('../../hooks/addUser');
 const filter = require('../../hooks/filter');
 const updateStock = require('../../hooks/updateStock');
 const validatePaymentAmount = require('../../hooks/validatePaymentAmount');
+const validateInventoryStocks = require('../../hooks/validateInventoryStocks');
 const checkPermissions = require('feathers-permissions');
 
 module.exports = {
@@ -14,7 +15,11 @@ module.exports = {
     })],
     find: [],
     get: [],
-    create: [validatePaymentAmount(), stripe(), addDateTime('createdAt'), addUser('user')],
+    create: [
+      validatePaymentAmount(), validateInventoryStocks(),
+      stripe(),
+      addDateTime('createdAt'), addUser('user'),
+    ],
     update: [],
     patch: [],
     remove: []
